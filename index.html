@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f4f1ea" />
+    <title>Pomodoro - 專注計時器</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@500;600;700&family=Noto+Sans+TC:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="回到首頁">
+          <span class="brand-mark" aria-hidden="true">
+            <span></span>
+          </span>
+          <span>POMODORO</span>
+        </a>
+
+        <div class="header-actions">
+          <button class="icon-button" id="soundButton" type="button" aria-label="關閉提示音" title="提示音">
+            <svg class="sound-on" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M11 5 6.5 8.5H3v7h3.5L11 19V5Z"></path>
+              <path d="M15 9.2a4 4 0 0 1 0 5.6M18 6.5a7.5 7.5 0 0 1 0 11"></path>
+            </svg>
+            <svg class="sound-off" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M11 5 6.5 8.5H3v7h3.5L11 19V5Z"></path>
+              <path d="m16 10 5 5M21 10l-5 5"></path>
+            </svg>
+          </button>
+          <button class="icon-button" id="themeButton" type="button" aria-label="切換深色模式" title="切換主題">
+            <svg class="theme-sun" viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="3.5"></circle>
+              <path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9 7 7M17 17l2.1 2.1M19.1 4.9 17 7M7 17l-2.1 2.1"></path>
+            </svg>
+            <svg class="theme-moon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M20 15.1A8.5 8.5 0 0 1 8.9 4a8.5 8.5 0 1 0 11.1 11.1Z"></path>
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <section class="workspace" aria-label="蕃茄鐘計時器">
+        <nav class="mode-tabs" aria-label="計時模式">
+          <button class="mode-tab active" type="button" data-mode="focus">
+            <span class="tab-dot"></span>
+            專注
+          </button>
+          <button class="mode-tab" type="button" data-mode="short">
+            短休息
+          </button>
+          <button class="mode-tab" type="button" data-mode="long">
+            長休息
+          </button>
+        </nav>
+
+        <div class="timer-card">
+          <div class="timer-ring">
+            <svg class="progress-ring" viewBox="0 0 320 320" aria-hidden="true">
+              <circle class="progress-track" cx="160" cy="160" r="150"></circle>
+              <circle class="progress-value" cx="160" cy="160" r="150"></circle>
+            </svg>
+
+            <div class="timer-content">
+              <p class="timer-label" id="timerLabel">專注中</p>
+              <time class="timer-display" id="timerDisplay" datetime="PT25M">25:00</time>
+              <p class="session-count" id="sessionCount">第 1 個番茄鐘</p>
+            </div>
+          </div>
+
+          <div class="controls">
+            <button class="control-button secondary" id="resetButton" type="button" aria-label="重置計時器" title="重置">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 9V4m0 0h5M4 4l4.2 4.2a7 7 0 1 1-1.4 10"></path>
+              </svg>
+            </button>
+            <button class="control-button primary" id="toggleButton" type="button" aria-label="開始計時">
+              <svg class="play-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="m8 5 11 7-11 7V5Z"></path>
+              </svg>
+              <svg class="pause-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M7 5h3v14H7zM14 5h3v14h-3z"></path>
+              </svg>
+            </button>
+            <button class="control-button secondary" id="skipButton" type="button" aria-label="跳到下一階段" title="下一階段">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="m5 5 9 7-9 7V5ZM18 5v14"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="daily-progress" aria-label="今日進度">
+          <div class="progress-heading">
+            <span>今日進度</span>
+            <span id="completedCount">0 / 4</span>
+          </div>
+          <div class="progress-dots" id="progressDots" aria-label="完成的番茄鐘">
+            <span class="progress-dot"></span>
+            <span class="progress-dot"></span>
+            <span class="progress-dot"></span>
+            <span class="progress-dot"></span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>

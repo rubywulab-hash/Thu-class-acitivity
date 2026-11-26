@@ -1,0 +1,470 @@
+:root {
+  --page: #f3f0e8;
+  --surface: #fbfaf6;
+  --text: #2f332e;
+  --muted: #92968d;
+  --line: #dfe1d8;
+  --accent: #c8634d;
+  --accent-deep: #b95543;
+  --shadow: rgba(54, 59, 50, 0.08);
+  --ring-track: #e4e3da;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: "Manrope", "Noto Sans TC", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 50% 42%, rgba(255, 255, 255, 0.72), transparent 31rem),
+    var(--page);
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  font: inherit;
+}
+
+.app-shell {
+  min-height: 100vh;
+}
+
+.topbar {
+  height: 88px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 clamp(24px, 5vw, 72px);
+  border-bottom: 1px solid rgba(47, 51, 46, 0.08);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+.brand-mark {
+  width: 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  border: 1.5px solid var(--text);
+  border-radius: 50%;
+  position: relative;
+}
+
+.brand-mark::before {
+  content: "";
+  width: 8px;
+  height: 3px;
+  border-radius: 3px 3px 1px 1px;
+  border: 1.5px solid var(--text);
+  border-bottom: 0;
+  position: absolute;
+  top: -5px;
+}
+
+.brand-mark span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 -6px 0 -2.5px var(--text);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.icon-button {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  color: var(--text);
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.icon-button:hover {
+  background: rgba(47, 51, 46, 0.06);
+}
+
+.icon-button:active {
+  transform: scale(0.94);
+}
+
+.icon-button svg {
+  width: 21px;
+  height: 21px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.sound-off,
+.theme-moon {
+  display: none;
+}
+
+.icon-button.muted .sound-on,
+.icon-button.dark .theme-sun {
+  display: none;
+}
+
+.icon-button.muted .sound-off,
+.icon-button.dark .theme-moon {
+  display: block;
+}
+
+.workspace {
+  min-height: calc(100vh - 88px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 34px 24px 28px;
+}
+
+.mode-tabs {
+  height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 24px;
+  padding: 5px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.38);
+}
+
+.mode-tab {
+  height: 34px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: 999px;
+  color: var(--muted);
+  background: transparent;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.mode-tab.active {
+  color: #fff;
+  background: var(--accent);
+  box-shadow: 0 4px 12px rgba(200, 99, 77, 0.18);
+}
+
+.tab-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0;
+}
+
+.mode-tab.active .tab-dot {
+  opacity: 1;
+}
+
+.timer-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.timer-ring {
+  width: clamp(278px, 40vh, 356px);
+  height: clamp(278px, 40vh, 356px);
+  position: relative;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.22);
+  box-shadow:
+    0 24px 60px var(--shadow),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+}
+
+.progress-ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+  overflow: visible;
+}
+
+.progress-track,
+.progress-value {
+  fill: none;
+  stroke-width: 8;
+}
+
+.progress-track {
+  stroke: var(--ring-track);
+}
+
+.progress-value {
+  stroke: var(--accent);
+  stroke-linecap: round;
+  stroke-dasharray: 942.478;
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 0.5s linear;
+  filter: drop-shadow(0 2px 3px rgba(200, 99, 77, 0.12));
+}
+
+.timer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.timer-label {
+  margin: 0 0 8px;
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.timer-display {
+  font-family: "DM Mono", monospace;
+  font-size: clamp(62px, 9vh, 82px);
+  line-height: 1;
+  letter-spacing: -0.07em;
+  font-variant-numeric: tabular-nums;
+}
+
+.session-count {
+  margin: 15px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 22px;
+}
+
+.control-button {
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
+}
+
+.control-button:hover {
+  transform: translateY(-2px);
+}
+
+.control-button:active {
+  transform: translateY(0) scale(0.96);
+}
+
+.control-button svg {
+  width: 21px;
+  height: 21px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.control-button.primary {
+  width: 64px;
+  height: 64px;
+  color: #fff;
+  background: var(--accent);
+  box-shadow: 0 12px 28px rgba(200, 99, 77, 0.28);
+}
+
+.control-button.primary svg {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+  stroke: none;
+}
+
+.control-button.primary .play-icon {
+  transform: translateX(1px);
+}
+
+.control-button.primary .pause-icon {
+  display: none;
+}
+
+.control-button.primary.running .play-icon {
+  display: none;
+}
+
+.control-button.primary.running .pause-icon {
+  display: block;
+}
+
+.control-button.secondary {
+  width: 44px;
+  height: 44px;
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid var(--line);
+}
+
+.control-button.secondary:hover {
+  color: var(--text);
+  background: var(--surface);
+  box-shadow: 0 8px 20px var(--shadow);
+}
+
+.daily-progress {
+  width: min(320px, 80vw);
+  margin-top: 18px;
+}
+
+.progress-heading {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 9px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.progress-dots {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 7px;
+}
+
+.progress-dot {
+  height: 4px;
+  border-radius: 999px;
+  background: var(--line);
+  transition: background 0.25s ease;
+}
+
+.progress-dot.complete {
+  background: var(--accent);
+}
+
+body.dark {
+  --page: #252824;
+  --surface: #30332f;
+  --text: #edf0e8;
+  --muted: #9da49a;
+  --line: #434840;
+  --accent: #d06e58;
+  --accent-deep: #bd604e;
+  --shadow: rgba(0, 0, 0, 0.16);
+  --ring-track: #41453e;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(255, 255, 255, 0.025), transparent 31rem),
+    var(--page);
+}
+
+body.dark .mode-tabs,
+body.dark .control-button.secondary {
+  background: rgba(255, 255, 255, 0.025);
+}
+
+body.dark .timer-ring {
+  background: rgba(255, 255, 255, 0.018);
+  box-shadow: 0 24px 60px var(--shadow);
+}
+
+@media (max-height: 720px) {
+  .topbar {
+    height: 72px;
+  }
+
+  .workspace {
+    min-height: calc(100vh - 72px);
+    padding-top: 16px;
+  }
+
+  .mode-tabs {
+    margin-bottom: 14px;
+  }
+
+  .timer-ring {
+    width: clamp(260px, 48vh, 320px);
+    height: clamp(260px, 48vh, 320px);
+  }
+
+  .controls {
+    margin-top: 14px;
+  }
+
+  .daily-progress {
+    margin-top: 12px;
+  }
+}
+
+@media (max-width: 520px) {
+  .topbar {
+    height: 72px;
+    padding: 0 20px;
+  }
+
+  .workspace {
+    min-height: calc(100vh - 72px);
+    padding: 22px 16px 18px;
+  }
+
+  .mode-tabs {
+    width: 100%;
+    max-width: 356px;
+  }
+
+  .mode-tab {
+    flex: 1;
+    justify-content: center;
+    padding: 0 8px;
+  }
+
+  .timer-ring {
+    width: min(78vw, 320px);
+    height: min(78vw, 320px);
+  }
+}
